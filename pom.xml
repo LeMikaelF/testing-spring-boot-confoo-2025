@@ -71,6 +71,11 @@
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>faux-pas</artifactId>
+            <version>0.9.0</version>
+        </dependency>
     </dependencies>
 
     <build>
