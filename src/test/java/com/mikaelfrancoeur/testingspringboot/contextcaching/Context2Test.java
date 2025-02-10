@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootTest(classes = Bean2.class)
-public class Context2Test {
+class Context2Test {
 
     @Test
     void test() throws InterruptedException {
