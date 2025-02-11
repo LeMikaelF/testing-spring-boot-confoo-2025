@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class Client {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private final HttpInterface http;
 
     public void fetchSomething() {
