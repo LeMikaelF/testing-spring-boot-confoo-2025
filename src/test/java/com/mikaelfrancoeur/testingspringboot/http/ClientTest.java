@@ -10,7 +10,9 @@ import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-@RestClientTest(WithRestClient.class)
+@RestClientTest(WithRestTemplate.class)
+//@RestClientTest(WithHttpInterface.class)
+//@RestClientTest(WithRestClient.class)
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 class ClientTest implements WithAssertions {
 

@@ -31,7 +31,7 @@ class WithHttpInterface implements Client {
 
     @Bean
     private static HttpInterface httpInterface(RestClient.Builder builder) {
-        RestClient restClient = builder.baseUrl("https://api.github.com/").build();
+        RestClient restClient = builder.baseUrl("http://localhost.com/").build();
         RestClientAdapter adapter = RestClientAdapter.create(restClient);
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
 
