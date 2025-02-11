@@ -1,4 +1,4 @@
-package com.mikaelfrancoeur.testingspringboot.restclient;
+package com.mikaelfrancoeur.testingspringboot.http;
 
 import java.util.Objects;
 
@@ -7,14 +7,15 @@ import org.springframework.web.client.RestClient;
 
 @Component
 @SuppressWarnings("SameParameterValue")
-class Client {
+class WithRestClient implements Client{
     private final RestClient restClient;
 
-    Client(RestClient.Builder builder) {
+    WithRestClient(RestClient.Builder builder) {
         this.restClient = builder.build();
     }
 
-    String fetchAddress(String name) {
+    @Override
+    public String fetchAddress(String name) {
         return Objects.requireNonNull(restClient.get()
                         .uri("http://localhost.com/{name}", name)
                         .retrieve()

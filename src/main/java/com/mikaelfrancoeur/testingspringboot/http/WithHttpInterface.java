@@ -1,4 +1,4 @@
-package com.mikaelfrancoeur.testingspringboot.httpinterface;
+package com.mikaelfrancoeur.testingspringboot.http;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -11,18 +11,22 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-class Client {
+class WithHttpInterface implements Client {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private final HttpInterface http;
 
-    public void fetchSomething() {
-        http.get();
+    @Override
+    public String fetchAddress(String name) {
+        return http.get().address();
     }
 
     private interface HttpInterface {
         @GetExchange
-        void get();
+        Response get();
+    }
+
+    private record Response(String address) {
     }
 
     @Bean

@@ -1,4 +1,4 @@
-package com.mikaelfrancoeur.testingspringboot.restclient;
+package com.mikaelfrancoeur.testingspringboot.http;
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -10,7 +10,8 @@ import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-@RestClientTest(Client.class)
+@RestClientTest(WithRestClient.class)
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 class ClientTest implements WithAssertions {
 
     @Autowired
