@@ -15,20 +15,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import lombok.SneakyThrows;
 
 @EmbeddedKafka
 @ActiveProfiles("kafka")
 @ImportAutoConfiguration(KafkaAutoConfiguration.class)
-@SpringBootTest(classes = KafkaConfig.class)
+@SpringBootTest(classes = {
+        KafkaConfig.class,
+        MyKafkaConsumer.class,
+})
 class MyKafkaConsumerTest implements WithAssertions {
 
     @Autowired
@@ -40,7 +43,7 @@ class MyKafkaConsumerTest implements WithAssertions {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    @SpyBean
+    @MockitoSpyBean
     private MyKafkaConsumer kafkaConsumer;
 
     @BeforeEach
