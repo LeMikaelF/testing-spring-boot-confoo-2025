@@ -64,7 +64,17 @@ class Relationship {
     }
 
     private Object serializeExternal() {
-        return "allo";
+        record RelationshipForExternal(String sourceId, String destinationId) {
+        }
+        return new RelationshipForExternal(obfuscate(sourceId), obfuscate(destinationId));
+    }
+
+    @SuppressWarnings("SuspiciousRegexArgument")
+    private String obfuscate(String str) {
+        if (str.isEmpty()) {
+            return str;
+        }
+        return str.charAt(0) + str.substring(1).replaceAll(".", "x");
     }
 
     private enum Type {
