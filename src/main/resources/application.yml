@@ -1,0 +1,21 @@
+spring:
+  application.name: testing-spring-boot
+  kafka:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      group-id: mikael
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    properties:
+      schema.registry.url: mock://my-test-scope
+      schema.reflection: true
+
+logging:
+  level:
+#    org.springframework.test.context.cache: DEBUG
+    kafka: ERROR
+    org.apache.kafka: ERROR
+    io.confluent: ERROR
+    state.change.logger: ERROR
