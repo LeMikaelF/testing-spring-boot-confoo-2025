@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -14,7 +15,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
         BeanWithCache.class,
 })
 @ExtendWith(SpringExtension.class)
-@ImportAutoConfiguration(CacheAutoConfiguration.class)
+@ImportAutoConfiguration({
+        CacheAutoConfiguration.class,
+        AopAutoConfiguration.class,
+})
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class BeanWithCacheTest implements WithAssertions {
 
