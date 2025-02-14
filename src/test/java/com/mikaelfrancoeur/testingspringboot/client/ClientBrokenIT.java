@@ -11,23 +11,36 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-@Import(BrokenClientConfig.class)
-@RestClientTest(BrokenClient.class)
-public class BrokenClientIT implements WithAssertions {
+@Import(ClientConfig.class)
+@RestClientTest(value = { BrokenClient.class, FixedClient.class })
+public class ClientBrokenIT implements WithAssertions {
 
     private static final String ADDRESS = "the address";
     private static final String NAME = "name";
+
     @Autowired
     private BrokenClient brokenClient;
+    @Autowired
+    private FixedClient fixedClient;
+
 
     @Autowired
     private MockRestServiceServer server;
 
     @Test
-    void test() {
-        server.expect(requestTo("www.google.com/address/name")).andRespond(withSuccess(ADDRESS, MediaType.TEXT_HTML));
+    void brokenClient() {
+        server.expect(requestTo("/address/name")).andRespond(withSuccess(ADDRESS, MediaType.TEXT_HTML));
 
         String address = brokenClient.fetchAddress(NAME);
+
+        assertThat(address).isEqualTo(ADDRESS);
+    }
+
+    @Test
+    void fixedClient() {
+        server.expect(requestTo("/address/name")).andRespond(withSuccess(ADDRESS, MediaType.TEXT_HTML));
+
+        String address = fixedClient.fetchAddress(NAME);
 
         assertThat(address).isEqualTo(ADDRESS);
     }

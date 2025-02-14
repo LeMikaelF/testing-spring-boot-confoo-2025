@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-class BrokenClientConfig {
+class ClientConfig {
 
     @Bean
     RestTemplate brokenClientRestTemplate(RestTemplateBuilder builder) {
-        return builder.rootUri("www.google.com").build();
+        return builder.rootUri("https://www.google.com").build();
     }
 }
