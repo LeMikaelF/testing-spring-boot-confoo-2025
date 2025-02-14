@@ -1,4 +1,4 @@
-package com.mikaelfrancoeur.testingspringboot.http;
+package com.mikaelfrancoeur.testingspringboot.client;
 
 import java.util.Objects;
 

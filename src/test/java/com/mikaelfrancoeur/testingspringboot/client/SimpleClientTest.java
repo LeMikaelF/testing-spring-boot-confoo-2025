@@ -1,27 +1,19 @@
-package com.mikaelfrancoeur.testingspringboot.http;
+package com.mikaelfrancoeur.testingspringboot.client;
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
-import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.RestTemplate;
 
-@RestClientTest(WithRestTemplate.class) @AutoConfigureWebClient(registerRestTemplate = true)
-//@RestClientTest(WithHttpInterface.class)
-//@RestClientTest(WithRestClient.class)
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-class ClientTest implements WithAssertions {
+public class SimpleClientTest implements WithAssertions {
 
-    @Autowired
-    private Client client;
-
-    @Autowired
-    private MockRestServiceServer server;
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final MockRestServiceServer server = MockRestServiceServer.bindTo(restTemplate).build();
+    private final WithRestTemplate client = new WithRestTemplate(restTemplate);
 
     @Test
     void clientFetchesAddress() {
