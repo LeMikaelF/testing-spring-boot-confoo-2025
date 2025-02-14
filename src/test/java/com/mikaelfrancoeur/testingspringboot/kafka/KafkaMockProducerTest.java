@@ -45,8 +45,8 @@ public @interface KafkaMockProducerTest {
         }
 
         @Bean
-        MockProducer<?, ?> mockProducer(MockKafkaProducerFactory<?, ?> factory) {
-            return factory.getMockProducer();
+        MockProducer<?, ?> mockProducer(DefaultKafkaProducerFactory<?, ?> factory) {
+            return ((MockKafkaProducerFactory<?, ?>) factory).getMockProducer();
         }
 
         @Getter
