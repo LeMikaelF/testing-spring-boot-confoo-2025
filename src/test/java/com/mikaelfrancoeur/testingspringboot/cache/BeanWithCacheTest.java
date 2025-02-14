@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@Import({
-        CacheConfig.class,
-        BeanWithCache.class,
-})
+@ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.cache")
 @ExtendWith(SpringExtension.class)
 @ImportAutoConfiguration({
         CacheAutoConfiguration.class,
