@@ -9,10 +9,12 @@ import org.apache.kafka.common.KafkaException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
+@Import(MyKafkaConsumer.class)
 @KafkaMockConsumerTest(classes = KafkaConfig.class, topic = MyKafkaConsumerMockTest.TOPIC)
 public class MyKafkaConsumerMockTest {
 
@@ -24,7 +26,7 @@ public class MyKafkaConsumerMockTest {
     @Autowired
     private MockConsumer<String, String> mockConsumer;
 
-    @SpyBean
+    @MockitoSpyBean
     private MyKafkaConsumer myKafkaConsumer;
 
     @BeforeEach
