@@ -1,5 +1,7 @@
 package com.mikaelfrancoeur.testingspringboot.controller;
 
+import java.security.Principal;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.ObjectError;
@@ -28,8 +30,8 @@ class MyController {
     private final UserService userService;
 
     @PutMapping
-    User upsertUser(@RequestBody @Valid UpsertRequest request) {
-        return userService.upsert(request.user);
+    User upsertUser(@RequestBody @Valid UpsertRequest request, Principal principal) {
+        return userService.upsert(request.user, principal.getName());
     }
 
 
