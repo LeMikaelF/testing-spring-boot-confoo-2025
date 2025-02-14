@@ -11,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 class KafkaConfig {
-    public KafkaConfig() {
-    }
 
     @Bean
     @SuppressWarnings({ "rawtypes", "unchecked" })
