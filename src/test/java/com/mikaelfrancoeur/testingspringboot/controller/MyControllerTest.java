@@ -27,7 +27,14 @@ class MyControllerTest {
     void whenRequestPayloadIsInvalid_thenBadRequest() {
         mockMvc.perform(put("/users")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"firstName\":\"John\",\"lastName\":\"Doe\",\"sin\":\"not valid\"}"))
+                        .content("""
+                                {
+                                  "firstName": "John",
+                                  "lastName": "Doe",
+                                  "sin": "not valid",
+                                  "reason": "something something something something something"
+                                }
+                                """))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("social insurance number not valid"))
                 .andExpect(content().contentType("text/plain;charset=UTF-8"));
