@@ -19,3 +19,7 @@ logging:
     org.apache.kafka: ERROR
     io.confluent: ERROR
     state.change.logger: ERROR
+
+kafka:
+  consumer:
+    topics: testtopic1,testtopic2

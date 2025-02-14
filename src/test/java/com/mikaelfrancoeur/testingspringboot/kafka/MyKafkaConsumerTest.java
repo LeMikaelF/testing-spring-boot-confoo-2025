@@ -20,13 +20,11 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import lombok.SneakyThrows;
 
 @EmbeddedKafka
-@ActiveProfiles("kafka")
 @ImportAutoConfiguration(KafkaAutoConfiguration.class)
 @SpringBootTest(classes = {
         KafkaConfig.class,
@@ -49,7 +47,7 @@ class MyKafkaConsumerTest implements WithAssertions {
     @BeforeEach
     void beforeEach() {
         registry.getAllListenerContainers().forEach(container -> {
-            ContainerTestUtils.waitForAssignment(container, embeddedKafkaBroker.getPartitionsPerTopic());
+            ContainerTestUtils.waitForAssignment(container, 2 * embeddedKafkaBroker.getPartitionsPerTopic()); // 2 topics
         });
 
         doNothing().when(kafkaConsumer).listen(any(), any());
@@ -58,7 +56,7 @@ class MyKafkaConsumerTest implements WithAssertions {
     @Test
     @SneakyThrows
     void test() {
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<>("kafka-events", "my message");
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>("testtopic2", "my message");
         producerRecord.headers().add("X-Correlation-Id", "mikael".getBytes(StandardCharsets.UTF_8));
         kafkaTemplate.send(producerRecord).get();
 
