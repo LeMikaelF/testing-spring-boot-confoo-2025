@@ -12,7 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 
 @Import(ClientConfig.class)
-@RestClientTest(value = { BrokenClient.class, FixedClient.class })
+@RestClientTest(value = {
+        BrokenClient.class,
+        FixedClient.class,
+})
 public class ClientBrokenIT implements WithAssertions {
 
     private static final String ADDRESS = "the address";
