@@ -9,7 +9,12 @@ import org.springframework.stereotype.Component;
 public class BeanWithCache implements MessageFactory {
 
     @Override
-    @Cacheable(cacheNames = "mycache", key = "#descriptor.message")
+    @Cacheable(
+            cacheNames = "mycache",
+            key = "#descriptor.message"
+            // condition = "...",
+            // unless = "..."
+    )
     public String getMessage(Descriptor descriptor) {
         return descriptor.message() + UUID.randomUUID();
     }

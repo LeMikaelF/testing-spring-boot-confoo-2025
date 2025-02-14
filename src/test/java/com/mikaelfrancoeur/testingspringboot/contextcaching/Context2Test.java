@@ -1,15 +1,16 @@
 package com.mikaelfrancoeur.testingspringboot.contextcaching;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@EnableScheduling
-@SpringBootTest(classes = Bean2.class)
+@DemoIT
 class Context2Test {
 
+    @Autowired
+
+
     @Test
-    void test() throws InterruptedException {
-        Thread.sleep(10_000);
+    void test() {
+        // no-op
     }
 }

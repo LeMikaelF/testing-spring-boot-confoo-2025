@@ -5,18 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.cache")
 @ExtendWith(SpringExtension.class)
-@ImportAutoConfiguration({
-        CacheAutoConfiguration.class,
-        AopAutoConfiguration.class,
-})
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+@ImportAutoConfiguration(CacheAutoConfiguration.class)
+@ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.cache")
 public class BeanWithCacheTest implements WithAssertions {
 
     @Autowired
