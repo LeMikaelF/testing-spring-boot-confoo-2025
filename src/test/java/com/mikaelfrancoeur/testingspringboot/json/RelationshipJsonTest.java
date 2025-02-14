@@ -3,6 +3,7 @@ package com.mikaelfrancoeur.testingspringboot.json;
 import java.io.IOException;
 import java.io.StringReader;
 
+import org.assertj.core.api.WithAssertions;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -13,13 +14,13 @@ import org.springframework.boot.test.json.JsonContent;
 import org.springframework.boot.test.json.ObjectContent;
 
 @JsonTest
-class RelationshipJsonTest {
+class RelationshipJsonTest implements WithAssertions {
 
     @Autowired
     private JacksonTester<Relationship> jacksonTester;
 
     @Test
-    void internalRoundTrip() throws IOException, JSONException {
+    void internalRoundTrip() throws IOException {
         // language=JSON
         String json = """
                 {
@@ -28,9 +29,8 @@ class RelationshipJsonTest {
                 }
                 """;
         ObjectContent<Relationship> objectContent = jacksonTester.read(new StringReader(json));
-        Relationship relationship = objectContent.getObject();
+        JsonContent<Relationship> jsonContent = jacksonTester.write(objectContent.getObject());
 
-        JsonContent<Relationship> jsonContent = jacksonTester.write(relationship);
         // language=JSON
         String expected = """
                 {
@@ -39,7 +39,7 @@ class RelationshipJsonTest {
                   "typeSuffix": "friendship"
                 }
                 """;
-        JSONAssert.assertEquals(expected, jsonContent.getJson(), true);
+        assertThat(jsonContent).isEqualToJson(expected);
     }
 
     @Test
@@ -52,9 +52,8 @@ class RelationshipJsonTest {
                 }
                 """;
         ObjectContent<Relationship> objectContent = jacksonTester.read(new StringReader(json));
-        Relationship relationship = objectContent.getObject();
 
-        JsonContent<Relationship> jsonContent = jacksonTester.write(relationship);
+        JsonContent<Relationship> jsonContent = jacksonTester.write(objectContent.getObject());
         // language=JSON
         String expected = """
                 {
