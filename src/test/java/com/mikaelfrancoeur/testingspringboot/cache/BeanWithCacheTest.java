@@ -3,16 +3,14 @@ package com.mikaelfrancoeur.testingspringboot.cache;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = BeanWithCacheTest.Config.class)
 @ImportAutoConfiguration(CacheAutoConfiguration.class)
-@ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.cache")
 public class BeanWithCacheTest implements WithAssertions {
 
     @Autowired
@@ -28,5 +26,9 @@ public class BeanWithCacheTest implements WithAssertions {
 
         String message3 = beanWithCache.getMessage(new BeanWithCache.Descriptor("Goodbye"));
         assertThat(message1).isNotEqualTo(message3);
+    }
+
+    @ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.cache")
+    static class Config {
     }
 }

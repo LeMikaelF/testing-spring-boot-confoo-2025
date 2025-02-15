@@ -2,20 +2,17 @@ package com.mikaelfrancoeur.testingspringboot.validation;
 
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.validation.annotation.Validated;
 
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 
-@ExtendWith(SpringExtension.class)
-@Import(DeviceTest.ValidationHelper.class)
 @ImportAutoConfiguration(ValidationAutoConfiguration.class)
+@SpringBootTest(classes = DeviceTest.ValidationHelper.class)
 class DeviceTest implements WithAssertions {
 
     @Autowired

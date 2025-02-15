@@ -2,15 +2,12 @@ package com.mikaelfrancoeur.testingspringboot.security;
 
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.authorization.AuthorizationDeniedException;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(SpringExtension.class)
-@Import(SecuredBeanTest.Config.class)
+@SpringBootTest(classes = SecuredBeanTest.Config.class)
 class SecuredBeanTest implements WithAssertions {
 
     @Autowired

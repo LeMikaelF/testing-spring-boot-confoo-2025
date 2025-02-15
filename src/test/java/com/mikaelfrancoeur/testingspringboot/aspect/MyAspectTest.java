@@ -12,24 +12,20 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import org.assertj.core.api.WithAssertions;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@Import({
+@SpringBootTest(classes =  {
         MyAspectTest.AnnotationOnType.class,
         MyAspectTest.AnnotationOnMethod.class,
 })
-@ExtendWith(SpringExtension.class)
 @ImportAutoConfiguration(AopAutoConfiguration.class)
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 class MyAspectTest implements WithAssertions {
 
     @MockitoBean
