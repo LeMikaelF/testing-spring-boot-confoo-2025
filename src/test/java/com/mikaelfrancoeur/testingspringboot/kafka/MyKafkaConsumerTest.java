@@ -26,10 +26,7 @@ import lombok.SneakyThrows;
 
 @EmbeddedKafka
 @ImportAutoConfiguration(KafkaAutoConfiguration.class)
-@SpringBootTest(classes = {
-        KafkaConfig.class,
-        MyKafkaConsumer.class,
-})
+@SpringBootTest(classes = MyKafkaConsumer.class)
 class MyKafkaConsumerTest implements WithAssertions {
 
     @Autowired
