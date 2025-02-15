@@ -7,6 +7,7 @@ import com.mikaelfrancoeur.testingspringboot.slow.SlowBean;
 
 @SpringBootTest(classes = {
         Bean1.class,
+        ContextCachingConfig.class,
         SlowBean.class
 })
 class Context1Test {
