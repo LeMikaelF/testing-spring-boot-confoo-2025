@@ -1,13 +1,15 @@
 package com.mikaelfrancoeur.testingspringboot.contextcaching;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@DemoIT
-class Context2Test {
+import com.mikaelfrancoeur.testingspringboot.slow.SlowBean;
 
-    @Autowired
-
+@SpringBootTest(classes = {
+        Bean2.class,
+        SlowBean.class,
+})
+public class Context2Test {
 
     @Test
     void test() {
