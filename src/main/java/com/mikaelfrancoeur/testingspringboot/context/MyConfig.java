@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MyConfig {
+class MyConfig {
 
     @ConditionalOnExpression("${cache.enabled:false} or T(java.util.Arrays).asList(environment.getActiveProfiles()).contains('local')")
     static class CacheConfig {
