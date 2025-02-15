@@ -15,7 +15,7 @@ import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 @Import(MyKafkaConsumer.class)
-@KafkaMockConsumerTest(classes = KafkaConfig.class, topic = MyKafkaConsumerMockTest.TOPIC)
+@KafkaMockConsumerTest(classes = MyKafkaConsumerMockTest.Dummy.class, topic = MyKafkaConsumerMockTest.TOPIC)
 public class MyKafkaConsumerMockTest {
 
     static final String TOPIC = "the-topic";
@@ -59,5 +59,8 @@ public class MyKafkaConsumerMockTest {
         });
 
         verify(myKafkaConsumer, timeout(5_000)).listen("message2", "mikael");
+    }
+
+    static class Dummy {
     }
 }
