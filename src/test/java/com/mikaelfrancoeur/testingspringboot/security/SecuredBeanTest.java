@@ -9,10 +9,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-//FIXME why do I need a new class
 @ExtendWith(SpringExtension.class)
 @Import(SecuredBeanTest.Config.class)
-@ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.security")
 class SecuredBeanTest implements WithAssertions {
 
     @Autowired
@@ -24,6 +22,8 @@ class SecuredBeanTest implements WithAssertions {
                 .isInstanceOf(AuthorizationDeniedException.class);
     }
 
+    // In some specific cases, @ComponentScan is only picked up if it is on a separate class.
+    @ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.security")
     static class Config {
     }
 }
