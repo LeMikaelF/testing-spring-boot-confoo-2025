@@ -10,3 +10,5 @@ This repository contains recipes for testing:
 * kafka
 * method security
 * method validation
+
+Some of the code in here wasn't discussed in the presentation for scheduling reasons.
