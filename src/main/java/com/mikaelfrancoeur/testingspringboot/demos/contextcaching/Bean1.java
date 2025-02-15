@@ -1,4 +1,4 @@
-package com.mikaelfrancoeur.testingspringboot.contextcaching;
+package com.mikaelfrancoeur.testingspringboot.demos.contextcaching;
 
 import org.springframework.scheduling.annotation.Scheduled;
 

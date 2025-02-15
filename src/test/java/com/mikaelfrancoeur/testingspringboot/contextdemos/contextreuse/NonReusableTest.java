@@ -1,4 +1,4 @@
-package com.mikaelfrancoeur.testingspringboot.contextreuse;
+package com.mikaelfrancoeur.testingspringboot.contextdemos.contextreuse;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

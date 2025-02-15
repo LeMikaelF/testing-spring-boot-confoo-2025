@@ -1,4 +1,4 @@
-package com.mikaelfrancoeur.testingspringboot.contextcaching;
+package com.mikaelfrancoeur.testingspringboot.demos.contextcaching;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -6,10 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.mikaelfrancoeur.testingspringboot.slow.SlowBean;
 
 @SpringBootTest(classes = {
-        Bean1.class,
-        SlowBean.class
+        Bean2.class,
+        SlowBean.class,
 })
-class Context1Test {
+public class Context2Test {
 
     @Test
     void test() {
