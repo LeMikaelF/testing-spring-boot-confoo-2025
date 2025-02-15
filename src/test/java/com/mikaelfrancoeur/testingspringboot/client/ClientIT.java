@@ -22,7 +22,7 @@ class ClientIT implements WithAssertions {
     private BrokenClient brokenClient;
 
     @Test
-    @Disabled
+    @Disabled("should fail, for demo only")
     void test() {
         brokenClient.fetchAddress("anything");
     }

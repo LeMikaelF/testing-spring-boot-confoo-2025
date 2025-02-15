@@ -1,6 +1,7 @@
 package com.mikaelfrancoeur.testingspringboot.cache;
 
 import org.assertj.core.api.WithAssertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class BeanWithCacheTest implements WithAssertions {
     private BeanWithCache beanWithCache;
 
     @Test
+    @Disabled("should fail, for demo only")
     void beanWithCacheUsesCache() {
         String message1 = beanWithCache.getMessage(new BeanWithCache.Descriptor("Hello"));
         String message2 = beanWithCache.getMessage(new BeanWithCache.Descriptor("Hello"));
