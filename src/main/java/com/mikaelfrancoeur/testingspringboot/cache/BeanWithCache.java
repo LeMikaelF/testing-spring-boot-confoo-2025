@@ -8,9 +8,8 @@ import org.springframework.stereotype.Component;
 import lombok.SneakyThrows;
 
 @Component
-public class BeanWithCache implements MessageFactory {
+public class BeanWithCache {
 
-    @Override
     @SneakyThrows
     @Cacheable(
             cacheNames = "mycache",
