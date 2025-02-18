@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 
-@SpringBootTest(classes = SecuredBeanTest.Config.class)
+@SpringBootTest
 class SecuredBeanTest implements WithAssertions {
 
     @Autowired
@@ -19,6 +20,7 @@ class SecuredBeanTest implements WithAssertions {
                 .isInstanceOf(AuthorizationDeniedException.class);
     }
 
+    @Configuration
     // In some specific cases, @ComponentScan is only picked up if it is on a separate class.
     @ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.security")
     static class Config {
