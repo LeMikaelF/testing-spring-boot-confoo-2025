@@ -24,9 +24,9 @@ import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import lombok.SneakyThrows;
 
-@EmbeddedKafka
-@ImportAutoConfiguration(KafkaAutoConfiguration.class)
 @SpringBootTest(classes = MyKafkaConsumer.class)
+@ImportAutoConfiguration(KafkaAutoConfiguration.class)
+@EmbeddedKafka
 class MyKafkaConsumerTest implements WithAssertions {
 
     @Autowired
