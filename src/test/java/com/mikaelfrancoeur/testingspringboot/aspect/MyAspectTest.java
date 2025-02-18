@@ -43,7 +43,7 @@ class MyAspectTest implements WithAssertions {
     @MethodSource("methodsToTest")
     void test(String description, Function<TestClassHolder, Consumer<Runnable>> method, boolean shouldBeAdvised) {
         Throwable caughtThrowable =
-                catchThrowable(() -> method.apply(new TestClassHolder(annotationOnMethod, annotationOnType)).accept(throwException()));
+                catchThrowable(() -> method.apply(new TestClassHolder(annotationOnMethod, annotationOnType)).accept(this::throwException));
 
         if (shouldBeAdvised) {
             verify(myAspect).afterThrowing(any(), same(exception));
@@ -54,10 +54,8 @@ class MyAspectTest implements WithAssertions {
         assertThat(caughtThrowable).isSameAs(exception);
     }
 
-    private Runnable throwException() {
-        return () -> {
-            throw exception;
-        };
+    private void throwException() {
+        throw exception;
     }
 
     record TestClassHolder(AnnotationOnMethod annotationOnMethod, AnnotationOnType annotationOnType) {
