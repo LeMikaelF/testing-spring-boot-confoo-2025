@@ -21,7 +21,6 @@ class SecuredBeanTest implements WithAssertions {
     }
 
     @Configuration
-    // In some specific cases, @ComponentScan is only picked up if it is on a separate class.
     @ComponentScan(basePackages = "com.mikaelfrancoeur.testingspringboot.security")
     static class Config {
     }
