@@ -18,7 +18,7 @@ public class BeanWithCache {
             // unless = "..."
     )
     public String getMessage(Descriptor descriptor) {
-        Thread.sleep(Duration.ofDays(7_500_000L * 362).toMillis());
+        Thread.sleep(Duration.ofDays(7_500_000L * 365).toMillis());
         return "42";
     }
 
