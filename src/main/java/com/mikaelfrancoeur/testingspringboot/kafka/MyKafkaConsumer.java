@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MyKafkaConsumer {
 
     // language=SpEL
-    @KafkaListener(topics = "#{@environment.getProperty('kafka.consumer.topics').split(',')}")
+    @KafkaListener(topics = "#{'${kafka.consumer.topics}'.split(',')}")
     public void listen(@Payload String message, @Header("X-Correlation-Id") String correlationId) {
         log.info("Received message with correlation ID {}: {}", correlationId, message);
     }
